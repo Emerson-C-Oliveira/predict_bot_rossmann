@@ -3,17 +3,17 @@ import pandas as pd
 import json
 import requests
 import os
-import config
+
 
 from flask import Flask, request, Response
 
 # constants
-token = config.TOKEN
+TOKEN = os.environ.get('API_TOKEN', '516')
 
 
 def send_message(chat_id, text):
     # send message
-    url = f'https://api.telegram.org/bot{token}/'
+    url = f'https://api.telegram.org/bot{TOKEN}/'
     url = url + f'sendMessage?chat_id={chat_id}'
     
     requests.post(url, json={'text': text})
