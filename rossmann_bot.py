@@ -4,8 +4,8 @@ import json
 import requests
 import os
 
+from flask import Flask,request,Response
 
-from flask import Flask, request, Response
 
 # constants
 TOKEN = os.environ.get('API_TOKEN', '516')
@@ -16,8 +16,8 @@ def send_message(chat_id, text):
     url = f'https://api.telegram.org/bot{TOKEN}/'
     url = url + f'sendMessage?chat_id={chat_id}'
     
-    requests.post(url, json={'text': text})
-    print(f'Status Code {r.status_code}')
+    r = requests.post(url,json = {'text':text})
+    print(f"Status Code{r.status_code}")
 
     return None
 
@@ -54,7 +54,8 @@ def predict(data):
     data = data
 
     r = requests.post( url, data=data, headers=header )
-    print( f'Status Code {r.status_code}')
+    print( 'Status Code {}'.format( r.status_code ) )
+
 
     d1 = pd.DataFrame( r.json(), columns=r.json()[0].keys() )
 
@@ -65,6 +66,7 @@ def parse_message(message):
     store_id = message['message']['text']
 
     store_id = store_id.replace('/', '')
+    
     try:
         store_id = int(store_id)
     
