@@ -24,8 +24,8 @@ def send_message(chat_id, text):
 
 def load_dataet(store_id):
     # loading test dataset
-    df10 = pd.read_csv( 'data/test.csv' )
-    df_store_raw = pd.read_csv( 'data/store.csv', low_memory=False )
+    df10 = pd.read_csv( 'test.csv' ) 
+    df_store_raw = pd.read_csv( 'store.csv', low_memory=False )
 
     # merge test dataset + store
     df_test = pd.merge( df10, df_store_raw, how='left', on='Store' )
@@ -66,7 +66,7 @@ def parse_message(message):
     store_id = message['message']['text']
 
     store_id = store_id.replace('/', '')
-    
+
     try:
         store_id = int(store_id)
     
