@@ -1,28 +1,38 @@
-# Imports
+# # Imports
+# import pandas as pd
+# import json
+# import requests
+# import os
+
+# from flask import Flask,request,Response
+
+
+# # constants
+# TOKEN = '6638734752:AAFcK07inBHX-sbCoSpf0P_EcfR6W_pIf28'
+
+# # # Info about the bot
+# # https://api.telegram.org/bot6638734752:AAFcK07inBHX-sbCoSpf0P_EcfR6W_pIf28/getMe
+
+# # # get updates
+# # https://api.telegram.org/bot6638734752:AAFcK07inBHX-sbCoSpf0P_EcfR6W_pIf28/getUpdates
+
+# # # Webhook
+# # https://api.telegram.org/bot6638734752:AAFcK07inBHX-sbCoSpf0P_EcfR6W_pIf28/setWebhook?url=https://e555e98c024638.lhr.life
+
+# # # send message
+# # https://api.telegram.org/bot6638734752:AAFcK07inBHX-sbCoSpf0P_EcfR6W_pIf28/sendMessage?chat_id=6323201132&text=Hi Emerson, I am doing good, tks!
+
+import os
 import pandas as pd
 import json
 import requests
-import os
+from flask import Flask, request, Response
+from dotenv import load_dotenv
 
-from flask import Flask,request,Response
+load_dotenv()  # Carregar variáveis de ambiente do arquivo .env
 
-
-# constants
-TOKEN = '6638734752:AAFcK07inBHX-sbCoSpf0P_EcfR6W_pIf28'
-
-# # Info about the bot
-# https://api.telegram.org/bot6638734752:AAFcK07inBHX-sbCoSpf0P_EcfR6W_pIf28/getMe
-
-# # get updates
-# https://api.telegram.org/bot6638734752:AAFcK07inBHX-sbCoSpf0P_EcfR6W_pIf28/getUpdates
-
-# # Webhook
-# https://api.telegram.org/bot6638734752:AAFcK07inBHX-sbCoSpf0P_EcfR6W_pIf28/setWebhook?url=https://e555e98c024638.lhr.life
-
-# # send message
-# https://api.telegram.org/bot6638734752:AAFcK07inBHX-sbCoSpf0P_EcfR6W_pIf28/sendMessage?chat_id=6323201132&text=Hi Emerson, I am doing good, tks!
-
-
+# Obter o token do bot da variável de ambiente ou definir um valor padrão
+TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
 
 
 def send_message(chat_id,text):
@@ -111,7 +121,7 @@ def index():
                 #calculation
                 d2 = d1[['store', 'prediction']].groupby( 'store' ).sum().reset_index()
 
-                msg =  'Store Number {} will sell R${:,.2f} in the next 6 weeks'.format( d2['store'].values[0], d2['prediction'].values[0] ) 
+                msg =  'Store Number {} will sell €{:,.2f} in the next 6 weeks'.format( d2['store'].values[0], d2['prediction'].values[0] ) 
 
                 send_message(chat_id,msg)
                 return Response("Ok",status=200)
