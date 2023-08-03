@@ -37,7 +37,7 @@ def send_message(chat_id,text):
     return None
 
 
-def load_dataet(store_id):
+def load_dataset(store_id):
     # loading test dataset
     df10 = pd.read_csv( 'test.csv' ) 
     df_store_raw = pd.read_csv( 'store.csv', low_memory=False )
@@ -95,6 +95,7 @@ def parse_message(message):
 app = Flask(__name__)
 
 @app.route('/',methods = ['GET',"POST"])
+
 def index():
     if request.method == 'POST':
         message = request.get_json()
