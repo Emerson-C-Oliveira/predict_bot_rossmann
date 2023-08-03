@@ -1,27 +1,3 @@
-# # Imports
-# import pandas as pd
-# import json
-# import requests
-# import os
-
-# from flask import Flask,request,Response
-
-
-# # constants
-# TOKEN = '6638734752:AAFcK07inBHX-sbCoSpf0P_EcfR6W_pIf28'
-
-# # # Info about the bot
-# # https://api.telegram.org/bot6638734752:AAFcK07inBHX-sbCoSpf0P_EcfR6W_pIf28/getMe
-
-# # # get updates
-# # https://api.telegram.org/bot6638734752:AAFcK07inBHX-sbCoSpf0P_EcfR6W_pIf28/getUpdates
-
-# # # Webhook
-# # https://api.telegram.org/bot6638734752:AAFcK07inBHX-sbCoSpf0P_EcfR6W_pIf28/setWebhook?url=https://e555e98c024638.lhr.life
-
-# # # send message
-# # https://api.telegram.org/bot6638734752:AAFcK07inBHX-sbCoSpf0P_EcfR6W_pIf28/sendMessage?chat_id=6323201132&text=Hi Emerson, I am doing good, tks!
-
 import os
 import pandas as pd
 import json
